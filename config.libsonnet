@@ -18,13 +18,13 @@
     },
 
     // Selectors are inserted between {} in Prometheus queries.
-    cadvisorSelector: 'job="cadvisor"',
-    kubeletSelector: 'job="kubelet"',
-    kubeStateMetricsSelector: 'job="kube-state-metrics"',
-    nodeExporterSelector: 'job="node-exporter"',
+    cadvisorSelector: 'job="integrations/kubernetes/cadvisor"',
+    kubeletSelector: 'job="integrations/kubernetes/kubelet"',
+    kubeStateMetricsSelector: 'job="integrations/kubernetes/kube-state-metrics"',
+    nodeExporterSelector: 'job="integrations/node_exporter"',
     kubeSchedulerSelector: 'job="kube-scheduler"',
     kubeControllerManagerSelector: 'job="kube-controller-manager"',
-    kubeApiserverSelector: 'job="kube-apiserver"',
+    kubeApiserverSelector: 'job="integrations/kubernetes/apiserver"',
     kubeProxySelector: 'job="kube-proxy"',
     podLabel: 'pod',
     hostNetworkInterfaceSelector: 'device!~"veth.+"',
@@ -66,18 +66,18 @@
     // Config for the Grafana dashboards in the Kubernetes Mixin
     grafanaK8s: {
       dashboardNamePrefix: 'Kubernetes / ',
-      dashboardTags: ['kubernetes-mixin'],
+      dashboardTags: ['kubernetes-mixin', 'Mimir'],
 
       // For links between grafana dashboards, you need to tell us if your grafana
       // servers under some non-root path.
       linkPrefix: '',
 
       // The default refresh time for all dashboards, default to 10s
-      refresh: '10s',
+      refresh: '1m',
       minimumTimeInterval: '1m',
 
       // Timezone for Grafana dashboards:: UTC, browser, ...
-      grafanaTimezone: 'UTC',
+      grafanaTimezone: 'browser',
     },
 
     // Opt-in to multiCluster dashboards by overriding this and the clusterLabel.
